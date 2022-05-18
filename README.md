@@ -12,7 +12,7 @@ ___
 ![GitHub](https://img.shields.io/github/license/26remph/api_final_yatube)
 ![pythonversion](https://img.shields.io/badge/python-%3E%3D3.7-blue)
 
-##Оглавление
+##Оглавление    
 0. [Как запустить проект](#как-запустить-проект)
 1. [Документация по api для yatoube](#документация-по-api)
 2. [Об авторе](#об-авторе)
