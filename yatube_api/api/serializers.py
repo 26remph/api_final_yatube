@@ -1,23 +1,53 @@
+from posts.models import Comment, Follow, Group, Post
 from rest_framework import serializers
-from rest_framework.relations import SlugRelatedField
 
 
-from posts.models import Comment, Post
+class FollowSerializer(serializers.ModelSerializer):
 
+    user = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='username',
+    )
 
-class PostSerializer(serializers.ModelSerializer):
-    author = SlugRelatedField(slug_field='username', read_only=True)
-
-    class Meta:
-        fields = '__all__'
-        model = Post
-
-
-class CommentSerializer(serializers.ModelSerializer):
-    author = serializers.SlugRelatedField(
-        read_only=True, slug_field='username'
+    following = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='username',
     )
 
     class Meta:
+        model = Follow
         fields = '__all__'
+
+
+class CommentSerializer(serializers.ModelSerializer):
+    """Сериализатор для упаковки комментариев."""
+
+    author = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='username'
+    )
+
+    class Meta:
         model = Comment
+        fields = '__all__'
+        read_only_fields = ('post', )
+
+
+class PostSerializer(serializers.ModelSerializer):
+    """Сериализатор для упаковки постов."""
+    author = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='username'
+    )
+
+    class Meta:
+        model = Post
+        fields = '__all__'
+
+
+class GroupSerializer(serializers.ModelSerializer):
+    """Сериализатор для упаковки групп."""
+    class Meta:
+        model = Group
+        fields = '__all__'
