@@ -56,6 +56,7 @@ v.bars@vidim.ru
 <br>
 <br>
 <br>
+<br>
 ___
 <p>
     <img align="center" src="./yatube_api/static/fav.svg" title="home page"/>
